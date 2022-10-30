@@ -12,18 +12,28 @@ class ProductAdapter(private val productViewModel: ProductViewModel) : RecyclerV
     class ViewHolder(val binding: ProductListElementBinding) : RecyclerView.ViewHolder(binding.root)
 
     private var products = emptyList<Product>()
+    private val textSize = 24f
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ProductListElementBinding.inflate(inflater)
+        val binding = ProductListElementBinding.inflate(inflater, parent, false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ProductAdapter.ViewHolder, position: Int) {
-        holder.binding.tvName.text = products[position].name
-        holder.binding.tvPrice.text = products[position].price.toString()
-        holder.binding.tvQuantity.text = products[position].quantity.toString()
-        holder.binding.checkBox.isChecked = products[position].bought
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.binding.textViewName.text = products[position].name
+        holder.binding.textViewPrice.text = products[position].price.toString() + " pln"
+        holder.binding.textViewQuantity.text = products[position].quantity.toString()
+        holder.binding.checkBoxBought.isChecked = products[position].bought
+
+        holder.binding.textViewName.textSize = textSize
+        holder.binding.textViewPrice.textSize = textSize
+        holder.binding.textViewQuantity.textSize = textSize
+        holder.binding.checkBoxBought.textSize = textSize
+
+
+
+
         holder.binding.root.setOnClickListener {
             delete(products[position].id)
             Toast.makeText(
@@ -31,6 +41,11 @@ class ProductAdapter(private val productViewModel: ProductViewModel) : RecyclerV
                 "Successfully removed product with id: ${products[position].id}",
                 Toast.LENGTH_LONG
             ).show()
+        }
+
+        holder.binding.checkBoxBought.setOnClickListener {
+            products[position].bought = holder.binding.checkBoxBought.isChecked
+            updateProduct(products[position])
         }
     }
 
@@ -48,5 +63,9 @@ class ProductAdapter(private val productViewModel: ProductViewModel) : RecyclerV
     fun setProducts(allProduct: List<Product>){
         products = allProduct
         notifyDataSetChanged()
+    }
+
+    fun updateProduct(product: Product){
+        productViewModel.update(product)
     }
 }

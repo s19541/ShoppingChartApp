@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        sharedPreferences = getPreferences(Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE)
 
         binding.logoButton.setOnClickListener{
             startActivity(Intent(this, ShoppingListActivity::class.java))

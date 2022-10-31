@@ -1,18 +1,21 @@
 package com.example.shoppingchartapp
 
+import android.content.Context.MODE_PRIVATE
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppingchartapp.databinding.ProductListElementBinding
 import com.example.shoppingchartapp.model.Product
+import android.content.SharedPreferences
+import android.graphics.Color
 
 class ProductAdapter(private val productViewModel: ProductViewModel) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ProductListElementBinding) : RecyclerView.ViewHolder(binding.root)
 
     private var products = emptyList<Product>()
-    private val textSize = 24f
+    private lateinit var prefs: SharedPreferences
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -26,10 +29,18 @@ class ProductAdapter(private val productViewModel: ProductViewModel) : RecyclerV
         holder.binding.textViewQuantity.text = products[position].quantity.toString()
         holder.binding.checkBoxBought.isChecked = products[position].bought
 
-        holder.binding.textViewName.textSize = textSize
-        holder.binding.textViewPrice.textSize = textSize
-        holder.binding.textViewQuantity.textSize = textSize
-        holder.binding.checkBoxBought.textSize = textSize
+        prefs = holder.binding.root.context.getSharedPreferences("prefs", MODE_PRIVATE)
+        val color = Color.rgb(prefs.getInt("Red", 0), prefs.getInt("Green", 0), prefs.getInt("Blue", 0))
+        val textSize = prefs.getInt("Size", 24)
+        holder.binding.textViewName.textSize = textSize.toFloat()
+        holder.binding.textViewPrice.textSize = textSize.toFloat()
+        holder.binding.textViewQuantity.textSize = textSize.toFloat()
+        holder.binding.checkBoxBought.textSize = textSize.toFloat()
+
+        holder.binding.textViewName.setTextColor(color)
+        holder.binding.textViewPrice.setTextColor(color)
+        holder.binding.textViewQuantity.setTextColor(color)
+        holder.binding.checkBoxBought.setTextColor(color)
 
 
 

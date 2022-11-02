@@ -1,14 +1,16 @@
 package com.example.shoppingchartapp
 
 import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppingchartapp.databinding.ProductListElementBinding
 import com.example.shoppingchartapp.model.Product
-import android.content.SharedPreferences
-import android.graphics.Color
+import java.text.NumberFormat
+import java.util.*
 
 class ProductAdapter(private val productViewModel: ProductViewModel) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
@@ -24,14 +26,24 @@ class ProductAdapter(private val productViewModel: ProductViewModel) : RecyclerV
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        prefs = holder.binding.root.context.getSharedPreferences("prefs", MODE_PRIVATE)
+
+        val currencyCode = prefs.getString("Currency", "PLN")
+        val format = NumberFormat.getCurrencyInstance()
+        format.maximumFractionDigits = 2
+        format.currency = Currency.getInstance(currencyCode)
+
         holder.binding.textViewName.text = products[position].name
-        holder.binding.textViewPrice.text = products[position].price.toString() + " pln"
+        holder.binding.textViewPrice.text = format.format(products[position].price * (1/CurrencyExchangeRates.valueOf(currencyCode?:"PLN").rate))
         holder.binding.textViewQuantity.text = products[position].quantity.toString()
         holder.binding.checkBoxBought.isChecked = products[position].bought
 
-        prefs = holder.binding.root.context.getSharedPreferences("prefs", MODE_PRIVATE)
+
+
+
         val color = Color.rgb(prefs.getInt("Red", 0), prefs.getInt("Green", 0), prefs.getInt("Blue", 0))
         val textSize = prefs.getInt("Size", 24)
+
         holder.binding.textViewName.textSize = textSize.toFloat()
         holder.binding.textViewPrice.textSize = textSize.toFloat()
         holder.binding.textViewQuantity.textSize = textSize.toFloat()

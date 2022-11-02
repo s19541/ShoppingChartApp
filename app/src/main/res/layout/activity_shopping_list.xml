@@ -82,6 +82,7 @@
         android:id="@+id/editTextPrice"
         android:layout_width="53dp"
         android:layout_height="53dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:inputType="numberDecimal|numberSigned"
         android:textSize="24dp"
@@ -93,7 +94,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="pln"
+        android:text="textView"
         android:textSize="24dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/editTextPrice"
         app:layout_constraintStart_toEndOf="@+id/editTextPrice" />

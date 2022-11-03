@@ -2,6 +2,7 @@ package com.example.shoppingchartapp.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity
 data class Product(
@@ -10,4 +11,4 @@ data class Product(
     var price: Float,
     var quantity: Int,
     var bought: Boolean
-    )
+    ) : Serializable

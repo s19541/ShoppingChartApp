@@ -59,7 +59,7 @@ class ShoppingListActivity : AppCompatActivity() {
             Product(
                 name = name,
                 quantity = quantity,
-                price = price  * CurrencyExchangeRates.valueOf(currencyCode?:"PLN").rate,
+                price = price * CurrencyExchangeRates.valueOf(currencyCode?:"PLN").rate,
                 bought = false
             )
         )

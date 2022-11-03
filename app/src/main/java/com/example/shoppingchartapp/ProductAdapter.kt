@@ -1,11 +1,14 @@
 package com.example.shoppingchartapp
 
 import android.content.Context.MODE_PRIVATE
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppingchartapp.databinding.ProductListElementBinding
 import com.example.shoppingchartapp.model.Product
@@ -57,13 +60,25 @@ class ProductAdapter(private val productViewModel: ProductViewModel) : RecyclerV
 
 
 
-        holder.binding.root.setOnClickListener {
+        holder.binding.root.setOnLongClickListener{
             delete(products[position].id)
             Toast.makeText(
                 holder.binding.root.context,
                 "Successfully removed product with id: ${products[position].id}",
                 Toast.LENGTH_LONG
             ).show()
+            true
+        }
+
+        holder.binding.root.setOnClickListener{
+            val intent = Intent(holder.binding.root.context, EditActivity::class.java)
+            intent.putExtra("product", products[position])
+            startActivity(
+                holder.binding.root.context,
+                intent,
+                Bundle()
+            )
+
         }
 
         holder.binding.checkBoxBought.setOnClickListener {

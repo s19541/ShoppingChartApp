@@ -25,12 +25,13 @@ class EditActivity : AppCompatActivity() {
         prefs = getSharedPreferences("prefs", MODE_PRIVATE)
 
         val product = intent.extras?.get("product") as Product
+        val currencyCode = prefs.getString("Currency", "PLN")
+        val currency = Currency.getInstance(currencyCode)
 
         binding.editTextName.setText(product.name)
         binding.editTextQuantity.setText(product.quantity.toString())
-        binding.editTextPrice.setText(product.price.toString())
+        binding.editTextPrice.setText((product.price * (1/CurrencyExchangeRates.valueOf(currencyCode?:"PLN").rate)).toString())
 
-        val currency = Currency.getInstance(prefs.getString("Currency", "PLN"))
         binding.textViewCurrency.text = currency.symbol
 
         binding.saveButton.setOnClickListener {

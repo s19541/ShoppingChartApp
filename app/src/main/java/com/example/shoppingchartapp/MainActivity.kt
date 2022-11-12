@@ -1,7 +1,5 @@
 package com.example.shoppingchartapp
 
-
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -20,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE)
 
-        binding.logoButton.setOnClickListener{
+        binding.shoppingChartButton.setOnClickListener{
             startActivity(Intent(this, ShoppingListActivity::class.java))
         }
 

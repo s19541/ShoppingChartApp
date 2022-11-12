@@ -12,6 +12,9 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppingchartapp.databinding.ProductListElementBinding
 import com.example.shoppingchartapp.model.Product
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.util.*
 
@@ -90,12 +93,17 @@ class ProductAdapter(private val productViewModel: ProductViewModel) : RecyclerV
     override fun getItemCount(): Int = products.size
 
     fun add(product: Product){
-        productViewModel.insert(product)
+        CoroutineScope(IO).launch {
+            productViewModel.insert(product)
+        }
         notifyDataSetChanged()
     }
 
     fun delete(id: Long){
-        productViewModel.delete(id)
+        CoroutineScope(IO).launch {
+            productViewModel.delete(id)
+        }
+        notifyDataSetChanged()
     }
 
     fun setProducts(allProduct: List<Product>){
@@ -104,6 +112,8 @@ class ProductAdapter(private val productViewModel: ProductViewModel) : RecyclerV
     }
 
     fun updateProduct(product: Product){
-        productViewModel.update(product)
+        CoroutineScope(IO).launch {
+            productViewModel.update(product)
+        }
     }
 }

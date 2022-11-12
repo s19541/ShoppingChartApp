@@ -13,8 +13,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Currency"
-        android:textSize="16sp"
+        android:text="@string/currency"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,8 +38,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Other settings"
-        android:textSize="20sp"
+        android:text="@string/other_settings"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,11 +50,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:contentDescription="@string/component_which_shows_selected_color"
         android:foregroundTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBarBlue"
-        app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
+        app:srcCompat="@android:drawable/editbox_dropdown_light_frame"
+        tools:ignore="ImageContrastCheck,RedundantDescriptionCheck" />
 
     <SeekBar
         android:id="@+id/seekBarBlue"
@@ -74,7 +76,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="B:"
+        android:text="@string/b"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewG" />
 
@@ -96,7 +99,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="G:"
+        android:text="@string/g"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewR" />
 
@@ -106,7 +110,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="R:"
+        android:text="@string/r"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewColor" />
 
@@ -128,7 +133,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Color:"
+        android:text="@string/color"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSize" />
 
@@ -138,7 +144,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text="Size:"
+        android:text="@string/size"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTextSettings" />
 
@@ -149,8 +156,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Text settings"
-        android:textSize="20sp"
+        android:text="@string/text_settings"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -163,8 +170,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Options"
-        android:textSize="30sp"
+        android:text="@string/options"
+        android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -176,13 +183,14 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#00B58787"
-        android:contentDescription="Save button"
+        android:contentDescription="@string/save_button"
         android:cropToPadding="false"
         android:padding="0dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_save"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="RedundantDescriptionCheck" />
 
     <TextView
         android:id="@+id/textViewTextSize"
@@ -190,15 +198,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:text="TextView"
+        android:text="@string/textview"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTextSettings" />
 
     <RadioGroup
         android:id="@+id/radioGroupCurrency"
-        android:layout_width="371dp"
-        android:layout_height="142dp"
+        android:layout_width="312dp"
+        android:layout_height="143dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -208,19 +216,20 @@
             android:id="@+id/radioButtonPLN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="PLN" />
+            android:text="@string/pln" />
 
         <RadioButton
             android:id="@+id/radioButtonUSD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="USD" />
+            android:text="@string/usd" />
 
         <RadioButton
             android:id="@+id/radioButtonEUR"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="EUR" />
+            android:text="@string/eur"
+            tools:ignore="TouchTargetSizeCheck" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

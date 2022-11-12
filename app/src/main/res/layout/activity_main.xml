@@ -11,7 +11,7 @@
         android:layout_width="168dp"
         android:layout_height="173dp"
         android:backgroundTint="#00B58787"
-        android:contentDescription="Setting button"
+        android:contentDescription="@string/setting_button"
         android:cropToPadding="false"
         android:padding="10dp"
         android:scaleType="fitCenter"
@@ -19,7 +19,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appName"
-        app:layout_constraintVertical_bias="0.63" />
+        app:layout_constraintVertical_bias="0.63"
+        tools:ignore="RedundantDescriptionCheck" />
 
     <TextView
         android:id="@+id/appName"
@@ -35,17 +36,18 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/logoButton"
+        android:id="@+id/shoppingChartButton"
         android:layout_width="405dp"
         android:layout_height="448dp"
         android:backgroundTint="#00B58787"
-        android:contentDescription="Logo button"
+        android:contentDescription="@string/shopping_chart_button"
         android:cropToPadding="false"
         android:padding="0dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_shopping_chart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RedundantDescriptionCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

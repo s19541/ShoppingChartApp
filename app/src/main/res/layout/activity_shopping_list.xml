@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Price:"
-        android:textSize="24dp"
+        android:text="@string/price"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/editTextPrice"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -21,8 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Quantity:"
-        android:textSize="24dp"
+        android:text="@string/quantity"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/editTextQuantity"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -33,13 +33,14 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#00B58787"
-        android:contentDescription="Add button"
+        android:contentDescription="@string/add_button"
         android:cropToPadding="false"
         android:padding="0dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="RedundantDescriptionCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productsRv"
@@ -61,41 +62,50 @@
         android:layout_width="196dp"
         android:layout_height="53dp"
         android:layout_marginBottom="4dp"
+        android:autofillHints=""
         android:ems="10"
+        android:hint="@string/product"
         android:inputType="textPersonName"
-        android:textSize="24dp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextQuantity"
-        app:layout_constraintStart_toEndOf="@+id/textViewName" />
+        app:layout_constraintStart_toEndOf="@+id/textViewName"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
 
     <EditText
         android:id="@+id/editTextQuantity"
         android:layout_width="53dp"
         android:layout_height="53dp"
         android:layout_marginBottom="4dp"
+        android:autofillHints=""
         android:ems="10"
+        android:hint="@string/_0"
         android:inputType="numberDecimal"
-        android:textSize="24dp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextPrice"
-        app:layout_constraintStart_toEndOf="@+id/textViewQuantity" />
+        app:layout_constraintStart_toEndOf="@+id/textViewQuantity"
+        tools:ignore="TextContrastCheck" />
 
     <EditText
         android:id="@+id/editTextPrice"
         android:layout_width="53dp"
         android:layout_height="53dp"
         android:layout_marginBottom="8dp"
+        android:autofillHints=""
         android:ems="10"
+        android:hint="@string/_0_0"
         android:inputType="numberDecimal|numberSigned"
-        android:textSize="24dp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewPrice" />
+        app:layout_constraintStart_toEndOf="@+id/textViewPrice"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/textViewCurrency"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="textView"
-        android:textSize="24dp"
+        android:text="@string/pln"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/editTextPrice"
         app:layout_constraintStart_toEndOf="@+id/editTextPrice" />
 
@@ -104,8 +114,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Name:"
-        android:textSize="24dp"
+        android:text="@string/product"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/editTextName"
         app:layout_constraintStart_toStartOf="parent" />
 

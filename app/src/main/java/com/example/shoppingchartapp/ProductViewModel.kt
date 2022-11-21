@@ -15,6 +15,8 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
         allProducts = repository.allProducts
     }
 
+    fun getProduct(id: Long) = repository.getProduct(id)
+
     suspend fun insert(product: Product) = repository.insert(product)
 
     suspend fun update(product: Product) = repository.update(product)

@@ -1,8 +1,11 @@
 package com.example.shoppingchartapp
 
+import android.content.ComponentName
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,11 +43,11 @@ class ShoppingListActivity : AppCompatActivity() {
         })
 
         binding.addButton.setOnClickListener{
-            addButtonClicked(adapter)
+            addButtonClicked(productViewModel, adapter)
         }
     }
 
-    private fun addButtonClicked(adapter: ProductAdapter){
+    private fun addButtonClicked(productViewModel: ProductViewModel, adapter: ProductAdapter){
 
         val currencyCode = prefs.getString("Currency", "PLN")
         val name = binding.editTextName.text.toString()
@@ -63,6 +66,21 @@ class ShoppingListActivity : AppCompatActivity() {
                 bought = false
             )
         )
+
+        productViewModel.allProducts.observe(this, androidx.lifecycle.Observer { it0 ->
+            it0.let{ it1->
+                if(it1.isNotEmpty()){
+                    val product = it1.last()
+                    if(product.name == name)
+                        sendBroadcast(Intent().also {
+                            it.putExtra("name", product.name)
+                            it.putExtra("id", product.id)
+                            it.action = "com.example.shoppingChartApp.action.AddProduct"
+                        })
+                }
+            }
+        })
+
         Toast.makeText(this, "Added new product: $name" , Toast.LENGTH_LONG).show()
     }
 }

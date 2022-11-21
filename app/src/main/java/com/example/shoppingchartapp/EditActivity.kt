@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.example.shoppingchartapp.databinding.ActivityEditBinding
 import com.example.shoppingchartapp.model.Product
@@ -24,19 +25,34 @@ class EditActivity : AppCompatActivity() {
 
         prefs = getSharedPreferences("prefs", MODE_PRIVATE)
 
-        val product = intent.extras?.get("product") as Product
-        val currencyCode = prefs.getString("Currency", "PLN")
-        val currency = Currency.getInstance(currencyCode)
+        val id = intent.getLongExtra("id", 0)
 
-        binding.editTextName.setText(product.name)
-        binding.editTextQuantity.setText(product.quantity.toString())
-        binding.editTextPrice.setText((product.price * (1/CurrencyExchangeRates.valueOf(currencyCode?:"PLN").rate)).toString())
+        var lifecycle = this
 
-        binding.textViewCurrency.text = currency.symbol
+        var productLiveData = productViewModel.getProduct(id)
 
-        binding.saveButton.setOnClickListener {
-            saveButtonClicked(adapter, product)
-        }
+        productLiveData.observe(lifecycle, androidx.lifecycle.Observer {
+            var product = it
+
+            val currencyCode = prefs.getString("Currency", "PLN")
+            val currency = Currency.getInstance(currencyCode)
+
+            binding.editTextName.setText(product.name)
+            binding.editTextQuantity.setText(product.quantity.toString())
+            binding.editTextPrice.setText((product.price * (1/CurrencyExchangeRates.valueOf(currencyCode?:"PLN").rate)).toString())
+
+            binding.textViewCurrency.text = currency.symbol
+
+            binding.saveButton.setOnClickListener {
+                saveButtonClicked(adapter, product)
+            }
+        })
+
+
+
+
+
+
 
     }
     private fun saveButtonClicked(adapter: ProductAdapter, product: Product){

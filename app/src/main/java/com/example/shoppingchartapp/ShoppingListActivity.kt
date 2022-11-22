@@ -1,5 +1,6 @@
 package com.example.shoppingchartapp
 
+import android.Manifest
 import android.content.ComponentName
 import android.content.Intent
 import android.content.SharedPreferences

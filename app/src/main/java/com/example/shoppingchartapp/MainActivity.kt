@@ -25,5 +25,9 @@ class MainActivity : AppCompatActivity() {
         binding.settingsButton.setOnClickListener{
             startActivity(Intent(this, OptionsActivity::class.java))
         }
+
+        binding.accountButton.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
     }
 }

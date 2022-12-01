@@ -75,7 +75,7 @@ class ProductAdapter(private val productViewModel: ProductViewModel) : RecyclerV
 
         holder.binding.root.setOnClickListener{
             val intent = Intent(holder.binding.root.context, EditActivity::class.java)
-            intent.putExtra("id", products[position].id)
+            intent.putExtra("product", products[position])
             startActivity(
                 holder.binding.root.context,
                 intent,

@@ -21,7 +21,7 @@ abstract class ProductDB : RoomDatabase() {
                 context,
                 ProductDB::class.java,
                 "Product Database"
-            ).fallbackToDestructiveMigration().build() // potencjalnie do zmiany
+            ).fallbackToDestructiveMigration().build()
 
             return instance
         }

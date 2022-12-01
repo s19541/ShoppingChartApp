@@ -59,7 +59,7 @@ class ShoppingListActivity : AppCompatActivity() {
             return
         }
 
-        adapter.add(
+         adapter.add(
             Product(
                 name = name,
                 quantity = quantity,
@@ -68,7 +68,8 @@ class ShoppingListActivity : AppCompatActivity() {
             )
         )
 
-        productViewModel.allProducts.observe(this, androidx.lifecycle.Observer { it0 ->
+
+       /* productViewModel.allProducts.observe(this, androidx.lifecycle.Observer { it0 ->
             it0.let{ it1->
                 if(it1.isNotEmpty()){
                     val product = it1.last()
@@ -80,7 +81,7 @@ class ShoppingListActivity : AppCompatActivity() {
                         })
                 }
             }
-        })
+        })*/
 
         Toast.makeText(this, "Added new product: $name" , Toast.LENGTH_LONG).show()
     }

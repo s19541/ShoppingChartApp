@@ -25,34 +25,20 @@ class EditActivity : AppCompatActivity() {
 
         prefs = getSharedPreferences("prefs", MODE_PRIVATE)
 
-        val id = intent.getLongExtra("id", 0)
+        val product = intent.extras?.get("product") as Product
 
-        var lifecycle = this
+        val currencyCode = prefs.getString("Currency", "PLN")
+        val currency = Currency.getInstance(currencyCode)
 
-        var productLiveData = productViewModel.getProduct(id)
+        binding.editTextName.setText(product.name)
+        binding.editTextQuantity.setText(product.quantity.toString())
+        binding.editTextPrice.setText((product.price * (1/CurrencyExchangeRates.valueOf(currencyCode?:"PLN").rate)).toString())
 
-        productLiveData.observe(lifecycle, androidx.lifecycle.Observer {
-            var product = it
+        binding.textViewCurrency.text = currency.symbol
 
-            val currencyCode = prefs.getString("Currency", "PLN")
-            val currency = Currency.getInstance(currencyCode)
-
-            binding.editTextName.setText(product.name)
-            binding.editTextQuantity.setText(product.quantity.toString())
-            binding.editTextPrice.setText((product.price * (1/CurrencyExchangeRates.valueOf(currencyCode?:"PLN").rate)).toString())
-
-            binding.textViewCurrency.text = currency.symbol
-
-            binding.saveButton.setOnClickListener {
-                saveButtonClicked(adapter, product)
-            }
-        })
-
-
-
-
-
-
+        binding.saveButton.setOnClickListener {
+            saveButtonClicked(adapter, product)
+        }
 
     }
     private fun saveButtonClicked(adapter: ProductAdapter, product: Product){

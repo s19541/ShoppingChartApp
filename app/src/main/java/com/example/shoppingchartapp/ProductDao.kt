@@ -8,25 +8,24 @@ import androidx.room.Query
 import androidx.room.Update
 import com.example.shoppingchartapp.model.Product
 
-@Dao
 interface ProductDao {
 
-    @Query("SELECT * FROM Product")
+    //@Query("SELECT * FROM Product")
     fun getProducts(): LiveData<List<Product>>
 
-    @Query("SELECT * FROM Product WHERE id = :id")
+    //@Query("SELECT * FROM Product WHERE id = :id")
     fun getProduct(id: Long): LiveData<Product>
 
-    @Insert
+    //@Insert
     fun insert(product: Product)
 
-    @Update
+    //@Update
     fun update(product: Product)
 
-    @Query("DELETE FROM Product WHERE id = :id")
+    //@Query("DELETE FROM Product WHERE id = :id")
     fun delete(id: Long)
 
-    @Query("DELETE FROM Product")
+    //@Query("DELETE FROM Product")
     fun deleteAll()
 
 }

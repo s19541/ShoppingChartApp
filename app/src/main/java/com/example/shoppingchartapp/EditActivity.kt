@@ -45,7 +45,7 @@ class EditActivity : AppCompatActivity() {
         val currencyCode = prefs.getString("Currency", "PLN")
         val name = binding.editTextName.text.toString()
         val quantity =  binding.editTextQuantity.text.toString().toIntOrNull() ?: 0
-        val price = binding.editTextPrice.text.toString().toFloatOrNull() ?: 0f
+        val price = binding.editTextPrice.text.toString().toDoubleOrNull() ?: 0.0
         if(name.isEmpty()){
             Toast.makeText(this, "Name can't be empty", Toast.LENGTH_LONG).show()
             return

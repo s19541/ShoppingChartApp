@@ -44,9 +44,6 @@ class ProductAdapter(private val productViewModel: ProductViewModel) : RecyclerV
         holder.binding.textViewQuantity.text = products[position].quantity.toString()
         holder.binding.checkBoxBought.isChecked = products[position].bought
 
-
-
-
         val color = Color.rgb(prefs.getInt("Red", 0), prefs.getInt("Green", 0), prefs.getInt("Blue", 0))
         val textSize = prefs.getInt("Size", 24)
 
@@ -64,7 +61,7 @@ class ProductAdapter(private val productViewModel: ProductViewModel) : RecyclerV
 
 
         holder.binding.root.setOnLongClickListener{
-            delete(products[position].id)
+            delete(products[position])
             Toast.makeText(
                 holder.binding.root.context,
                 "Successfully removed product with id: ${products[position].id}",
@@ -99,9 +96,9 @@ class ProductAdapter(private val productViewModel: ProductViewModel) : RecyclerV
         notifyDataSetChanged()
     }
 
-    fun delete(id: Long){
+    fun delete(product: Product){
         CoroutineScope(IO).launch {
-            productViewModel.delete(id)
+            productViewModel.delete(product)
         }
         notifyDataSetChanged()
     }

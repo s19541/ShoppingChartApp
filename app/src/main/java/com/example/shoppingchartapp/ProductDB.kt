@@ -6,7 +6,6 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.shoppingchartapp.model.Product
 
-@Database(entities = [Product::class], version = 1)
 abstract class ProductDB : RoomDatabase() {
 
     abstract fun productDao(): ProductDao

@@ -42,13 +42,6 @@ class Repository(private val fbdb: FirebaseDatabase) {
                 }
 
                 override fun onChildRemoved(snapshot: DataSnapshot) {
-                    val product = Product(
-                        id = snapshot.ref.key as String,
-                        name = snapshot.child("name").getValue(String::class.java)!!,
-                        price = snapshot.child("price").getValue(Double::class.java)!!,
-                        quantity = snapshot.child("quantity").getValue(Int::class.java)!!,
-                        bought = snapshot.child("bought").getValue(Boolean::class.java)!!
-                    )
                     allProducts.value?.remove(snapshot.ref.key)
                     allProducts.postValue(allProducts.value)
                 }

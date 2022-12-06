@@ -19,6 +19,14 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+        val userEmail = auth.currentUser?.email
+        binding.textViewUser.text = userEmail
+
+        binding.logOutButton.setOnClickListener{
+            auth.signOut()
+            binding.textViewUser.text = ""
+        }
+
         binding.buttonRegister.setOnClickListener{
             auth.createUserWithEmailAndPassword(
                 binding.editTextEmail.text.toString(),
@@ -33,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
                     this.finish()
                 }
                 else{
-                    Toast.makeText(this, "Problem with registration", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Problem with registration: " + it.exception?.message, Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -48,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
                     this.finish()
                 }
                 else{
-                    Toast.makeText(this, "Problem with sign in", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Problem with sign in: " + it.exception?.message, Toast.LENGTH_LONG).show()
                 }
             }
         }

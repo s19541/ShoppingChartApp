@@ -4,10 +4,11 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import com.example.shoppingchartapp.databinding.ActivityEditBinding
-import com.example.shoppingchartapp.model.Product
+import com.example.shoppingchartapp.product.Product
+import com.example.shoppingchartapp.product.ProductAdapter
+import com.example.shoppingchartapp.product.ProductViewModel
 import java.util.*
 
 class EditActivity : AppCompatActivity() {

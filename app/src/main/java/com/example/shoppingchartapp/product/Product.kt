@@ -1,4 +1,4 @@
-package com.example.shoppingchartapp.model
+package com.example.shoppingchartapp.product
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

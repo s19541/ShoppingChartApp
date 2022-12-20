@@ -1,4 +1,4 @@
-package com.example.shoppingchartapp
+package com.example.shoppingchartapp.product
 
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
@@ -10,8 +10,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.shoppingchartapp.CurrencyExchangeRates
+import com.example.shoppingchartapp.EditActivity
 import com.example.shoppingchartapp.databinding.ProductListElementBinding
-import com.example.shoppingchartapp.model.Product
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
@@ -40,7 +41,7 @@ class ProductAdapter(private val productViewModel: ProductViewModel) : RecyclerV
         format.currency = Currency.getInstance(currencyCode)
 
         holder.binding.textViewName.text = products[position].name
-        holder.binding.textViewPrice.text = format.format(products[position].price * (1/CurrencyExchangeRates.valueOf(currencyCode?:"PLN").rate))
+        holder.binding.textViewPrice.text = format.format(products[position].price * (1/ CurrencyExchangeRates.valueOf(currencyCode?:"PLN").rate))
         holder.binding.textViewQuantity.text = products[position].quantity.toString()
         holder.binding.checkBoxBought.isChecked = products[position].bought
 

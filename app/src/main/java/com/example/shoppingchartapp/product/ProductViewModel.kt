@@ -1,21 +1,18 @@
-package com.example.shoppingchartapp
+package com.example.shoppingchartapp.product
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.shoppingchartapp.model.Product
 import com.google.firebase.database.FirebaseDatabase
 
 class ProductViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository: Repository
-    var firebaseDatabase: FirebaseDatabase
+    private val repository: ProductRepository
+    private var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     val allProducts: MutableLiveData<HashMap<String, Product>>
 
     init{
-        firebaseDatabase = FirebaseDatabase.getInstance()
-        repository = Repository(firebaseDatabase)
+        repository = ProductRepository(firebaseDatabase)
         allProducts = repository.allProducts
     }
 

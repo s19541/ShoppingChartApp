@@ -1,13 +1,12 @@
-package com.example.shoppingchartapp
+package com.example.shoppingchartapp.product
 
 import androidx.lifecycle.MutableLiveData
-import com.example.shoppingchartapp.model.Product
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 
-class Repository(private val fbdb: FirebaseDatabase) {
+class ProductRepository(private val fbdb: FirebaseDatabase) {
 
     val allProducts: MutableLiveData<HashMap<String, Product>> =
         MutableLiveData<HashMap<String, Product>>().also{
@@ -47,11 +46,9 @@ class Repository(private val fbdb: FirebaseDatabase) {
                 }
 
                 override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-                    TODO("Not yet implemented")
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
                 }
 
             }
@@ -66,7 +63,6 @@ class Repository(private val fbdb: FirebaseDatabase) {
     }
 
     fun update(product: Product){
-        //TODO W uwierzytelnianiu przed Product UID/ zalogowanego uzytkownika
         var productRef = fbdb.getReference("Product/${product.id}")
         productRef.child("name").setValue(product.name)
         productRef.child("quantity").setValue(product.quantity)
